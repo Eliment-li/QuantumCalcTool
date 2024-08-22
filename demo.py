@@ -1,0 +1,93 @@
+import  numpy as np
+import sympy as sp
+import matrix_calc
+from constant import Constant as con
+from kroneckerProduct import kroneckerProduct as kp
+from eigen import eigen
+x = con.pauli_X
+z = con.pauli_Z
+h = con.H
+p = con.p
+m = con.m
+e = con.e
+g = con.g
+coeff = con.k
+z4 = con.z4
+x4 = con.x4
+z2 = con.z2
+x2 = con.x2
+
+#验证 pauli x y z 的 乘以自身的共轭转置都等于i ，例如 X@X_dagger = I
+def dagger():
+    m = con.pauli_Z
+    dagger_m = np.transpose(np.conjugate(m))
+    print(dagger_m @ m)
+
+'''
+h 门 可以将 |+> 转为 |0> 
+因此，执行pauli_X 可以先执行 H 再 执行 z 来实现
+
+coeff = np.sqrt(1 / 2)
+p = (coeff * g) + (coeff * e)
+'''
+def p_to_0():
+    x = con.pauli_X
+    h = con.H
+    p = con.p
+    print(p)
+    print(p @ h )
+    print(p @ h @ h)
+
+
+'''
+验证 4 比特 stabilizer 的 测量结果
+'''
+def test_stabilizer():
+
+    x_stabilizer = kp(x,x,x,x)
+    z_stabilizer = kp(z,z,z,z)
+
+    state = kp(m,m,p,m)
+    print(state)
+    # sp.pretty_print(x_stabilizer)
+    result =  x_sta
+    bilizer * state
+    print(result)
+    print(matrix_calc.divide(result,state))
+
+'''
+验证 2 比特 stabilizer 共用本征态
+Table 2
+'''
+def test_2qubits_stabilizer():
+
+     #|ge> + |eg>
+    state = sp.Matrix(kp(g,e)) + sp.Matrix(kp(e,g))
+
+    zz = kp(z,z)
+    xx = kp(x,x)
+    gg = kp(g,g)
+
+    print(f'|ge> + |eg> = {sp.pretty(state.T)}')
+    print(f' zz * state = { zz * state}')
+    print(f' xx * state  = {xx  * state}')
+
+    print(f'gg  =\n{sp.pretty(gg.T)  }')
+    print(f' xx * gg   = { xx* gg}')
+
+    print(kp(g,g))
+    print(kp(e,e))
+    print(kp(g, e))
+    print(kp(e,g))
+    print(kp(z,z))
+    eigen(kp(z,z))
+
+'''
+验证 x2 z2 , x4 z4 的可交换性
+'''
+def swappable_matrix():
+    print(np.array_equal(z4 @ x4, x4 @ z4))
+    print(np.array_equal(z2 @ x2, x2 @ z2))
+
+if __name__ == '__main__':
+    pass
