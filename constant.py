@@ -1,7 +1,6 @@
 import numpy as np
-from kroneckerProduct import kroneckerProduct as kp
+from calc.kroneckerProduct import kroneckerProduct as kp
 import sympy as sp
-from sympy import I, simplify, symbols
 from sympy import sqrt
 class Constant:
     i = sp.Matrix([
@@ -9,20 +8,23 @@ class Constant:
         [0,1]
     ])
 
-
-    #k = np.sqrt(1 / 2)
-    k = sqrt(1/2)
+    k = sp.Symbol('k')
     e = sp.Matrix([0,1],dtype=int)
     g = sp.Matrix([1,0],dtype=int)
 
+    e2 = kp(e,e)
+    g2 = kp(g,g)
+
     p = (k * g) + (k * e)
     m = (k * g) - (k * e)
+
+    p2 = kp(p,p)
+    m2 = kp(m,m)
 
     pauli_X = sp.Matrix([
         [0,1],
         [1,0]
     ])
-
 
     pauli_Y = sp.Matrix([
         [0,-1j],

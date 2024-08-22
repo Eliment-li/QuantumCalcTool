@@ -1,8 +1,8 @@
 import  numpy as np
 import sympy as sp
-import matrix_calc
+from calc import matrix
 from constant import Constant as con
-from kroneckerProduct import kroneckerProduct as kp
+from calc.kroneckerProduct import kroneckerProduct as kp
 from eigen import eigen
 x = con.pauli_X
 z = con.pauli_Z
@@ -50,10 +50,9 @@ def test_stabilizer():
     state = kp(m,m,p,m)
     print(state)
     # sp.pretty_print(x_stabilizer)
-    result =  x_sta
-    bilizer * state
+    result =  x_stabilizer * state
     print(result)
-    print(matrix_calc.divide(result,state))
+    print(matrix.divide(result, state))
 
 '''
 验证 2 比特 stabilizer 共用本征态

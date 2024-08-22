@@ -1,23 +1,17 @@
 import numpy as np
-
+import sympy as sp
 '''
 first_eigenvector = eigenvectors[:, 0]
 '''
-# def eigen(matrix):
-#     eigenvalues, eigenvectors = np.linalg.eig(matrix)
-#     for i in range(len(eigenvalues)):
-#         eigenvector = eigenvectors[:, i]
-#         result = f"特征值 {eigenvalues[i]} : {np.round(eigenvector,1)}"
-#         print(result)
-#     print(np.round(eigenvectors, 1))
-#     return eigenvalues, eigenvectors
 
 def eigen(matrix):
-    # eigenvalues, eigenvectors = np.linalg.eig(matrix)
+    if not isinstance(matrix,sp.Matrix):
+        matrix = sp.Matrix(matrix)
 
-    # 计算特征值和特征向量
-    eigenvals = matrix.eigenvals()  # 返回一个字典，键是特征值，值是特征值的代数重数
-    eigenvects = matrix.eigenvects()  # 返回一个列表，列表中的每个元素是一个三元组 (特征值, 重数, 特征向量)
+    # 返回一个字典，键是特征值，值是特征值的代数重数
+    eigenvals = matrix.eigenvals()
+    # 返回一个列表，列表中的每个元素是一个三元组 (特征值, 重数, 特征向量)
+    eigenvects = matrix.eigenvects()
 
     print("\n特征向量:")
     for eigenval, multiplicity, eigenvects in eigenvects:
@@ -32,5 +26,6 @@ if __name__ == '__main__':
  [ 0, -1,  0,  0],
  [ 0,  0, -1,  0],
  [ 0,  0,  0,  1]]
+    eigen(zz)
 
 

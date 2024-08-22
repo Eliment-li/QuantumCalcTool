@@ -1,11 +1,7 @@
-import math
 import sympy as sp
-import numpy as np
-from kroneckerProduct import kroneckerProduct as kp
+from calc.kroneckerProduct import kroneckerProduct as kp
 from constant import Constant as con
-from eigen import eigen
-from matrix_calc import divide as div
-from pprint import pprint
+
 x = con.pauli_X
 z = con.pauli_Z
 h = con.H
@@ -32,7 +28,4 @@ def testsympy():
     print(k_expr)
 
 if __name__ == '__main__':
-    gg = kp(g,g)
-    print(kp(g,gg))
-    ee = kp(e,e)
-    print(kp(e,ee))
+    testsympy()
