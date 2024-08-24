@@ -1,7 +1,7 @@
 import  numpy as np
 import sympy as sp
 from calc import matrix
-from constant import Constant as con
+import constant as con
 from calc.kroneckerProduct import kroneckerProduct as kp
 from eigen import eigen
 x = con.pauli_X

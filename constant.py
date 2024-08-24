@@ -1,73 +1,72 @@
 import numpy as np
 from calc.kroneckerProduct import kroneckerProduct as kp
 import sympy as sp
-from sympy import sqrt
-class Constant:
-    i = sp.Matrix([
-        [1,0],
-        [0,1]
-    ])
+from sympy import sqrt, pprint
 
-    k = sp.Symbol('k')
-    e = sp.Matrix([0,1],dtype=int)
-    g = sp.Matrix([1,0],dtype=int)
+i = sp.Matrix([
+    [1, 0],
+    [0, 1]
+])
 
-    e2 = kp(e,e)
-    g2 = kp(g,g)
+# define sqrt (1/2)
+k = sp.Symbol('2')
+sqrt_1_2 = sp.sqrt(k)
 
-    p = (k * g) + (k * e)
-    m = (k * g) - (k * e)
+e = sp.Matrix([0, 1], dtype=int)
+g = sp.Matrix([1, 0], dtype=int)
 
-    p2 = kp(p,p)
-    m2 = kp(m,m)
+e2 = kp(e, e)
+g2 = kp(g, g)
 
-    pauli_X = sp.Matrix([
-        [0,1],
-        [1,0]
-    ])
+p = (sqrt_1_2 * g) + (sqrt_1_2 * e)
+m = (sqrt_1_2 * g) - (sqrt_1_2 * e)
 
-    pauli_Y = sp.Matrix([
-        [0,-1j],
-        [1j,0]
-    ])
+p2 = kp(p, p)
+m2 = kp(m, m)
 
-    pauli_Z = sp.Matrix([
-        [1,0],
-        [0,-1]
-    ])
+pauli_X = sp.Matrix([
+    [0, 1],
+    [1, 0]
+])
 
-    S = sp.Matrix([
-        [1,0],
-        [0,1j]
-    ])
+pauli_Y = sp.Matrix([
+    [0, -1j],
+    [1j, 0]
+])
 
-    T = sp.Matrix([
-        [1, 0],
-        [0, np.exp(1j * np.pi / 4)]
-    ])
+pauli_Z = sp.Matrix([
+    [1, 0],
+    [0, -1]
+])
 
+S = sp.Matrix([
+    [1, 0],
+    [0, 1j]
+])
 
-    H = k * sp.Matrix([
-        [1,1],
-        [1,-1]
-    ])
+T = sp.Matrix([
+    [1, 0],
+    [0, np.exp(1j * np.pi / 4)]
+])
 
-    CNOT = sp.Matrix([
-        [1,0,0,0],
-        [0,1,0,0],
-        [0,0,0,1],
-        [0,0,1,0]
-    ])
+H = sqrt_1_2 * sp.Matrix([
+    [1, 1],
+    [1, -1]
+])
 
+CNOT = sp.Matrix([
+    [1, 0, 0, 0],
+    [0, 1, 0, 0],
+    [0, 0, 0, 1],
+    [0, 0, 1, 0]
+])
 
-    z4 = kp(pauli_Z,pauli_Z,pauli_Z,pauli_Z)
-    x4 = kp(pauli_X,pauli_X,pauli_X,pauli_X)
-    z2 = kp(pauli_Z,pauli_Z)
-    x2 = kp(pauli_X,pauli_X)
+z4 = kp(pauli_Z, pauli_Z, pauli_Z, pauli_Z)
+x4 = kp(pauli_X, pauli_X, pauli_X, pauli_X)
+z2 = kp(pauli_Z, pauli_Z)
+x2 = kp(pauli_X, pauli_X)
 
-
-
-    # rz = sp.Matrix([
+# rz = sp.Matrix([
     #
     #     [1-I,0],[0,1+I]
     # ])
@@ -80,5 +79,4 @@ class Constant:
     #
     # print(I*I)
 if __name__ == '__main__':
-    sqrt2 = sqrt(2)
-    print(sqrt2*sqrt2)
+    pprint(p)
