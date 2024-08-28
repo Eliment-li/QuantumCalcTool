@@ -1,5 +1,5 @@
 from sympy.printing import pprint
-from constant import Constant as con
+import constant as con
 from calc.kroneckerProduct import kroneckerProduct as kp
 x = con.pauli_X
 z = con.pauli_Z
@@ -8,10 +8,8 @@ p = con.p
 m = con.m
 e = con.e
 g = con.g
-e2 = con.e2
-g2 = con.g2
-p = con.p
 i = con.i
+
 
 cnot = con.CNOT
 z4 = con.z4
