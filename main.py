@@ -1,6 +1,6 @@
 import sympy as sp
 from calc.kroneckerProduct import kroneckerProduct as kp
-from constant import Constant as con
+import constant as con
 
 x = con.pauli_X
 z = con.pauli_Z

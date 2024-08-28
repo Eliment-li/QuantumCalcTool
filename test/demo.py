@@ -1,7 +1,9 @@
 import  numpy as np
 import sympy as sp
+from sympy import pprint
+
 from calc import matrix
-from constant import Constant as con
+import constant as con
 from calc.kroneckerProduct import kroneckerProduct as kp
 from eigen import eigen
 x = con.pauli_X
@@ -88,5 +90,42 @@ def swappable_matrix():
     print(np.array_equal(z4 @ x4, x4 @ z4))
     print(np.array_equal(z2 @ x2, x2 @ z2))
 
+
+def test_anti_commute():
+    PI = sp.pi
+    i = sp.I
+
+    rx = sp.Matrix(
+        [
+            [sp.cos(PI/4), -i*sp.sin(PI/4)],
+            [-i*sp.sin(PI/4), sp.cos(PI/4)]
+        ]
+    )
+
+    rz = sp.Matrix(
+        [
+            [con.sqrt_1_2*(1-i),0],
+            [0,con.sqrt_1_2*(1+i)]
+        ]
+    )
+
+    rx = sp.Matrix([
+        [1,-i],
+        [-i,1]
+    ])
+    rz = sp.Matrix([
+        [1-i,0],
+        [0,1+i]
+    ])
+    XZ = rx*rz
+    ZX = rz*rx
+
+    pprint(con.pauli_X*con.pauli_Z)
+    pprint(con.pauli_Z*con.pauli_X)
+    # pprint(XZ)
+    # pprint("========")
+    # pprint(ZX)
+    # pprint(XZ == -ZX)
+
 if __name__ == '__main__':
-    pass
+    test_anti_commute()
