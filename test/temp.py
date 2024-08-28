@@ -1,5 +1,12 @@
 import sympy as sp
+from sympy import pprint
+import  constant as con
+from calc.kroneckerProduct import kroneckerProduct as kp
+p = con.p
+m = con.m
 
+e = con.e
+g = con.g
 #展示 sympy 的根号用法
 def symbols_demo():
     # 定义符号变量
@@ -13,4 +20,7 @@ def symbols_demo():
     sp.pprint(expr)
 
 if __name__ == '__main__':
-    symbols_demo()
+    pprint(kp(g,g))
+    pprint(kp(g,e))
+    pprint(kp(e,g))
+    pprint(kp(e,e))
