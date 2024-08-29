@@ -9,7 +9,7 @@ i = sp.Matrix([
 ])
 
 # define sqrt (1/2)
-k = sp.Symbol('2')
+k = sp.Symbol('1/2')
 sqrt_1_2 = sp.sqrt(k)
 
 e = sp.Matrix([0, 1], dtype=int)
@@ -79,4 +79,4 @@ x2 = kp(pauli_X, pauli_X)
     #
     # print(I*I)
 if __name__ == '__main__':
-    pprint(p)
+    pprint(sqrt_1_2)
