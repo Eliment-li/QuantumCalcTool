@@ -51,8 +51,4 @@ def linear_combination_solver(v, vectors):
     return solution
 
 if __name__ == '__main__':
-    M = sp.Matrix([
-        [1+2j,3],
-        [4,5]
-    ],dtype=complex)
-    pprint(dagger(M))
+    pass

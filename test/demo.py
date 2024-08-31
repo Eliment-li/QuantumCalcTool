@@ -5,6 +5,7 @@ from sympy import pprint
 from calc import matrix
 import constant as con
 from calc.kroneckerProduct import kroneckerProduct as kp
+from calc.matrix import dagger
 from eigen import eigen
 x = con.pauli_X
 z = con.pauli_Z
@@ -20,10 +21,6 @@ z2 = con.z2
 x2 = con.x2
 
 #验证 pauli x y z 的 乘以自身的共轭转置都等于i ，例如 X@X_dagger = I
-def dagger():
-    m = con.pauli_Z
-    dagger_m = np.transpose(np.conjugate(m))
-    print(dagger_m @ m)
 
 '''
 h 门 可以将 |+> 转为 |0> 
@@ -127,5 +124,6 @@ def test_anti_commute():
     # pprint(ZX)
     # pprint(XZ == -ZX)
 
+
 if __name__ == '__main__':
-    test_anti_commute()
+    pass
