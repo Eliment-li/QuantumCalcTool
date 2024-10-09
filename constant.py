@@ -79,4 +79,5 @@ x2 = kp(pauli_X, pauli_X)
     #
     # print(I*I)
 if __name__ == '__main__':
-    pprint(sqrt_1_2)
+    pprint(CNOT.H)
+    pprint(CNOT)

@@ -1,5 +1,5 @@
 import sympy as sp
-from sympy import pprint
+from sympy import pprint, Matrix
 
 '''
 将两个矩阵的元素逐个相除得到一个新的矩阵
@@ -23,6 +23,8 @@ def dagger(M:sp.Matrix):
     M = M.conjugate() #共轭
     M = M.transpose() # 转置
     return M
+
+
 '''
     求解向量 v 被向量组 vectors 线性表示的系数。
 
@@ -50,5 +52,46 @@ def linear_combination_solver(v, vectors):
 
     return solution
 
+def eigen(matrix):
+    if not isinstance(matrix,sp.Matrix):
+        matrix = sp.Matrix(matrix)
+
+    # 返回一个字典，键是特征值，值是特征值的代数重数
+    eigenvals = matrix.eigenvals()
+    # 返回一个列表，列表中的每个元素是一个三元组 (特征值, 重数, 特征向量)
+    eigenvects = matrix.eigenvects()
+
+    print("\n特征向量:")
+    for eigenval, multiplicity, eigenvects in eigenvects:
+        for eigenvect in eigenvects:
+            print(f"特征值 {eigenval} 对应的特征向量: {eigenvect}")
+
+    return eigenvals, eigenvects
+
+    """
+    计算两个包含 Matrix 对象的数组的交集。
+    """
+def matrix_intersection(arr1, arr2):
+    intersection = []
+    for mat1 in arr1:
+        for mat2 in arr2:
+            if mat1.equals(mat2):
+                intersection.append(mat1)
+                break  # 如果找到了相等的矩阵就跳出内循环，避免重复添加
+
+    return intersection
+
 if __name__ == '__main__':
-    pass
+    # 示例用法
+    matrix1 = Matrix([[1, 2], [3, 4]])
+    matrix2 = Matrix([[5, 6], [7, 8]])
+    matrix3 = Matrix([[1, 2], [3, 4]])
+    matrix4 = Matrix([[9, 10], [11, 12]])
+
+    arr1 = [matrix1, matrix2]
+    arr2 = [matrix3, matrix4]
+
+    result = matrix_intersection(arr1, arr2)
+    print("交集结果:")
+    for mat in result:
+        print(mat)
