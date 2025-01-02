@@ -1,1 +1,6 @@
-sympy == 1.13.2
+sympy
+stim
+pymatching
+sinter
+cairosvg
+tensorly

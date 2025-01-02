@@ -27,4 +27,11 @@ surface_code_circuit = stim.Circuit.generated(
     before_measure_flip_probability=0.001,
     before_round_data_depolarization=0.001)
 
-surface_code_circuit.without_noise().diagram("timeslice-svg").show()
+fig = str(surface_code_circuit.without_noise().diagram("timeslice-svg"))
+import cairosvg
+# Save the SVG content to a file
+with open('d:/timeslice.svg', 'w') as file:
+    file.write(fig)
+
+# Alternatively, convert and save to another format
+cairosvg.svg2png(bytestring=fig, write_to='d:/timeslice.png')
