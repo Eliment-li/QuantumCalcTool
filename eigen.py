@@ -14,6 +14,13 @@ def eigen(matrix):
     eigenvects = matrix.eigenvects()
     return eigenvals, eigenvects
 
+def print_eigen(matrix):
+    eigenvals, eigenvects = eigen(matrix)
+    print("\n特征向量:")
+    for eigenval, multiplicity, eigenvects in eigenvects:
+        for eigenvect in eigenvects:
+            print(f"特征值 {eigenval} 对应的特征向量: {eigenvect}")
+
 
 if __name__ == '__main__':
     zz = [[ 1,  0,  0,  0],
