@@ -1,5 +1,7 @@
 import  numpy as np
+import qiskit
 import sympy as sp
+from qiskit_aer import AerSimulator
 from sympy import pprint
 
 from calc import matrix
@@ -23,7 +25,7 @@ x2 = con.x2
 #验证 pauli x y z 的 乘以自身的共轭转置都等于i ，例如 X@X_dagger = I
 
 '''
-h 门 可以将 |+> 转为 |0> 
+h 门可以将 |+> 转为 |0> 
 因此，执行pauli_X 可以先执行 H 再 执行 z 来实现
 
 coeff = np.sqrt(1 / 2)
@@ -52,6 +54,36 @@ def test_stabilizer():
     result =  x_stabilizer * state
     print(result)
     print(matrix.divide(result, state))
+
+
+'''
+验证 z stabilizer 线路，
+参考 Surface codes: Towards practical large-scale quantum computation p.5 的 Circuit
+'''
+def test_stabilizer():
+    simulator = AerSimulator()
+    #create a quantum circuit
+    qc = qiskit.QuantumCircuit(5,1)
+
+    '''
+    只有 X 门(bit-flip error) 会影响测量结果 Z 门不会
+    '''
+    #qc.x(1)
+    qc.cx(1,0)
+    qc.cx(2,0)
+    qc.cx(3,0)
+    qc.cx(4,0)
+
+    # Measure only qubit 0 and store the result in classical bit 0
+    qc.measure(0, 0)
+
+    #qc = transpile(qc, simulator)
+    result = simulator.run(qc).result()
+    counts = result.get_counts(qc)
+    print(counts)
+    #print(qc.draw())
+    #plot_histogram(counts).show()
+
 
 '''
 验证 2 比特 stabilizer 共用本征态
