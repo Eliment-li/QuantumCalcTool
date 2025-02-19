@@ -4,3 +4,5 @@ pymatching
 sinter
 cairosvg
 tensorly
+qiskit
+qiskit-aer
