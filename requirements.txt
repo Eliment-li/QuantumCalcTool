@@ -6,3 +6,4 @@ cairosvg
 tensorly
 qiskit
 qiskit-aer
+maptlotlib==3.9.4
