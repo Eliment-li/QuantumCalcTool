@@ -5,6 +5,10 @@ from calc.kroneckerProduct import kroneckerProduct as kp
 import constant as con
 from eigen import eigen, print_eigen
 from calc.matrix import matrix_intersection, dagger
+from qiskit import QuantumCircuit, transpile
+from qiskit_aer import AerSimulator
+from qiskit.visualization import plot_histogram
+import matplotlib.pyplot as plt
 
 x = con.pauli_X
 z = con.pauli_Z
@@ -21,13 +25,30 @@ x4 = con.x4
 z2 = con.z2
 x2 = con.x2
 
-
+import  qiskit
 
 if __name__ == '__main__':
-    U = con.CNOT
-    XI = kp(x,I)
-    print_eigen(XI)
-    pprint(U* sp.Matrix([[1], [0], [1], [0]]))
-    pprint(U* sp.Matrix([[0], [1], [0], [1]]))
-    print_eigen(x2)
+    simulator = AerSimulator()
+    #create a quantum circuit
+    qc = qiskit.QuantumCircuit(5,1)
+
+    '''
+    只有 X 门(bit-flip error) 会影响测量结果 Z 门不会
+    '''
+    #qc.x(1)
+    qc.cx(1,0)
+    qc.cx(2,0)
+    qc.cx(3,0)
+    qc.cx(4,0)
+
+    # Measure only qubit 0 and store the result in classical bit 0
+    qc.measure(0, 0)
+
+    #qc = transpile(qc, simulator)
+    result = simulator.run(qc).result()
+    counts = result.get_counts(qc)
+    print(counts)
+    #print(qc.draw())
+    #plot_histogram(counts).show()
+
 
