@@ -28,27 +28,9 @@ x2 = con.x2
 import  qiskit
 
 if __name__ == '__main__':
-    simulator = AerSimulator()
-    #create a quantum circuit
-    qc = qiskit.QuantumCircuit(5,1)
+  xaxb = kp(x, x)
+  psi = kp(g, g)+kp(e,e)
 
-    '''
-    只有 X 门(bit-flip error) 会影响测量结果 Z 门不会
-    '''
-    #qc.x(1)
-    qc.cx(1,0)
-    qc.cx(2,0)
-    qc.cx(3,0)
-    qc.cx(4,0)
-
-    # Measure only qubit 0 and store the result in classical bit 0
-    qc.measure(0, 0)
-
-    #qc = transpile(qc, simulator)
-    result = simulator.run(qc).result()
-    counts = result.get_counts(qc)
-    print(counts)
-    #print(qc.draw())
-    #plot_histogram(counts).show()
+  print(psi == xaxb*psi)
 
 
