@@ -2,8 +2,11 @@ import sympy as sp
 from sympy import pprint, Matrix
 
 '''
-将两个矩阵的元素逐个相除得到一个新的矩阵
+divide two sp.Matrix ,return 1 if two matrix are the same, 
+return -1 if two matrix are the same but all elements are -1
+else return element wise division
 '''
+
 def divide(A,B):
     # 检查两个矩阵的尺寸是否相同
     if A.shape != B.shape:
@@ -16,7 +19,12 @@ def divide(A,B):
     else float('inf'))
     for j in range(A.cols)
 ] for i in range(A.rows)])
-
+    #if all elemetns are 1, return 1
+    if all([result[i,j] == 1 for i in range(result.rows) for j in range(result.cols)]):
+        return 1
+    #if all elemetns are -1, return -1
+    if all([result[i,j] == -1 for i in range(result.rows) for j in range(result.cols)]):
+        return -1
     return result
 
 def dagger(M:sp.Matrix):
