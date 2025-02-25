@@ -27,6 +27,25 @@ def divide(A,B):
         return -1
     return result
 
+'''
+判断两个矩阵是否相等或者是否相差一个 -1 因子。
+'''
+def same_or_neg(A, B):
+    # 检查两个矩阵的尺寸是否相同
+    if A.shape != B.shape:
+        raise ValueError("矩阵 A 和 B 必须具有相同的尺寸")
+
+    # 检查两个矩阵是否相等
+    if A.equals(B):
+        return 1
+
+    # 检查两个矩阵是否相差一个 -1 因子
+    neg_one = sp.Matrix([[-1]])
+    if A.equals(B * neg_one):
+        return -1
+
+    return False
+
 def dagger(M:sp.Matrix):
     M = M.conjugate() #共轭
     M = M.transpose() # 转置
