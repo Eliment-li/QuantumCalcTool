@@ -60,11 +60,12 @@ def test_stabilizer():
 验证 z stabilizer 线路，
 参考 Surface codes: Towards practical large-scale quantum computation p.5 的 Circuit
 '''
-def test_stabilizer():
+def test_stabilizer_circuit():
     simulator = AerSimulator()
     #create a quantum circuit
-    qc = qiskit.QuantumCircuit(5,1)
 
+    # Z stabilizer
+    qc = qiskit.QuantumCircuit(5,1)
     '''
     只有 X 门(bit-flip error) 会影响测量结果 Z 门不会
     '''
@@ -77,12 +78,28 @@ def test_stabilizer():
     # Measure only qubit 0 and store the result in classical bit 0
     qc.measure(0, 0)
 
-    #qc = transpile(qc, simulator)
     result = simulator.run(qc).result()
     counts = result.get_counts(qc)
     print(counts)
     #print(qc.draw())
     #plot_histogram(counts).show()
+
+    # X stabilizer
+    #重新初始化线路
+    qc = qiskit.QuantumCircuit(5, 1)
+    qc.h(0)
+    qc.cx(0, 1)
+    qc.cx(0, 2)
+    qc.cx(0, 3)
+    qc.cx(0, 4)
+    qc.h(0)
+    qc.measure(0, 0)
+
+    result = simulator.run(qc).result()
+    counts = result.get_counts(qc)
+    print(counts)
+    # print(qc.draw())
+    # plot_histogram(counts).show()
 
 
 '''
@@ -158,4 +175,4 @@ def test_anti_commute():
 
 
 if __name__ == '__main__':
-    pass
+    test_stabilizer_circuit()
