@@ -14,16 +14,17 @@ def divide(A,B):
 
     # 元素逐个相除
     result = sp.Matrix([[
-    1 if (A[i, j] == 0 and B[i, j] == 0)
+    0 if (A[i, j] == 0 and B[i, j] == 0) # 0/0 = 0
     else (A[i, j] / B[i, j] if B[i, j] != 0
     else float('inf'))
     for j in range(A.cols)
 ] for i in range(A.rows)])
-    #if all elemetns are 1, return 1
-    if all([result[i,j] == 1 for i in range(result.rows) for j in range(result.cols)]):
+    #if all elemetns are 1, return 1 skip the 0 case
+
+    if all([result[i,j] == 1 or result[i,j]==0  for i in range(result.rows) for j in range(result.cols)]):
         return 1
     #if all elemetns are -1, return -1
-    if all([result[i,j] == -1 for i in range(result.rows) for j in range(result.cols)]):
+    if all([result[i,j] == -1 or result[i,j]==0 for i in range(result.rows) for j in range(result.cols)]):
         return -1
     return result
 
