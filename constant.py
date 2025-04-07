@@ -3,7 +3,7 @@ from calc.kroneckerProduct import kroneckerProduct as kp
 import sympy as sp
 from sympy import sqrt, pprint
 
-i = sp.Matrix([
+I = sp.Matrix([
     [1, 0],
     [0, 1]
 ])
@@ -37,6 +37,19 @@ pauli_Y = sp.Matrix([
 pauli_Z = sp.Matrix([
     [1, 0],
     [0, -1]
+])
+
+pi = sp.pi
+# pi/8 z rotation
+#define 1/8 pi rotation around z axis
+rz_pi8 = sp.Matrix([
+    [1, 0],
+    [0, sp.exp(I * pi/8)]
+])
+
+rz_minus_pi8 = sp.Matrix([
+    [1, 0],
+    [0, sp.exp(-I * pi/8)]
 ])
 
 S = sp.Matrix([
