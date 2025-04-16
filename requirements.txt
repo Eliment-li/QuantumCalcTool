@@ -6,4 +6,7 @@ cairosvg
 tensorly
 qiskit
 qiskit-aer
-maptlotlib==3.9.4
+pylatexenc
+maptlotlib
+mqt.bench
+scikit-learn
